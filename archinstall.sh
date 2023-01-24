@@ -21,4 +21,5 @@ if [ ! -b "/dev/$diskname" ]; then
 fi
 echo "Running setup script"
 bash scripts/0-setup.sh $diskname || quit "setup"
-# echo "Running install script"
+echo "Running install script"
+bash scripts/1-install.sh $diskname || quit "install"
