@@ -2,10 +2,12 @@
 
 disk="/dev/$1"
 
+echo "----------------Cleanup system----------------"
+pacman -Scc --noconfirm
+
 # Install keyring
 echo "---------Installing required packages---------"
 pacman -Sy --noconfirm archlinux-keyring
-pacman -S --noconfirm --needed pacman-contrib
 pacman -S --noconfirm --needed gptfdisk gcc-libs glibc
 
 # Format disk
