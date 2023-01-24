@@ -20,7 +20,7 @@ if [ ! -b "/dev/$diskname" ]; then
   exit 1
 fi
 echo "Running setup script"
-bash scripts/0-setup.sh || quit "setup"
+bash scripts/0-setup.sh $diskname || quit "setup"
 echo "Running install script"
 bash scripts/1-install.sh || quit "install"
 echo "Running user script"
