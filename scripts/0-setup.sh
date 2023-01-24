@@ -4,7 +4,7 @@ disk="/dev/$1"
 
 # Install keyring
 echo "---------Installing required packages---------"
-pacman -Sy --noconfirm archlinux-keyring gptfdisk
+pacman -Sy --noconfirm archlinux-keyring gptfdisk glibc
 
 # Format disk
 echo "--------------Partitioning disk---------------"
