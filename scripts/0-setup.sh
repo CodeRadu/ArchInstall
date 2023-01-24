@@ -4,6 +4,7 @@ disk="/dev/$1"
 
 echo "----------------Cleanup system----------------"
 pacman -Scc --noconfirm
+pacman -R git
 
 # Install keyring
 echo "---------Installing required packages---------"
