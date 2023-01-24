@@ -6,7 +6,7 @@ disk="/dev/$1"
 echo "---------Installing required packages---------"
 pacman -Sy --noconfirm archlinux-keyring
 pacman -S --noconfirm --needed pacman-contrib
-pacman -S --noconfirm --needed gptfdisk glibc
+pacman -S --noconfirm --needed gptfdisk gcc-libs glibc
 
 # Format disk
 echo "--------------Partitioning disk---------------"
