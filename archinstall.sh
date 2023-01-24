@@ -20,8 +20,17 @@ if [ ! -b "/dev/$diskname" ]; then
   exit 1
 fi
 echo "Running setup script"
-bash scripts/0-setup.sh $diskname || quit "setup"
+bash scripts/0-setup.sh || quit "setup"
 echo "Running install script"
-bash scripts/1-install.sh $diskname || quit "install"
+bash scripts/1-install.sh || quit "install"
 echo "Running user script"
-bash scripts/2-user.sh $diskname || quit "user"
+bash scripts/2-user.sh || quit "user"
+echo "Running desktop script"
+bash scripts/3-desktop.sh || quit "desktop"
+
+echo "Unmounting disk"
+umount /mnt/boot
+umount /mnt
+swapoff /dev/${diskname}3
+
+reboot now
