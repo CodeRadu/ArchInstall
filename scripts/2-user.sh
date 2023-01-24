@@ -2,8 +2,8 @@
 
 echo "-----------------Install sudo-----------------"
 arch-chroot /mnt /bin/bash << EOS
-pacman -S --noconfirm sudo chpasswd
-echo "%sudo ALL=(ALL:ALL) ALL >> /etc/sudoers
+pacman -S --noconfirm sudo
+echo "%sudo ALL=(ALL:ALL) ALL" >> /etc/sudoers
 groupadd sudo
 EOS
 
@@ -15,6 +15,7 @@ read password
 arch-chroot /mnt /bin/bash << EOS
 useradd -m $username
 echo "$username:$password" | chpasswd
+usermod -aG sudo $username
 EOS
 
 echo "-------------Machine configuration------------"
