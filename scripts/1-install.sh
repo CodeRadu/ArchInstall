@@ -3,7 +3,7 @@
 disk="/dev/$1"
 
 echo "---------------Installing base----------------"
-pacstrap /mnt base linux linux-firmware nano sudo gurb efibootmgr --noconfirm
+pacstrap /mnt base linux linux-firmware nano sudo grub efibootmgr --noconfirm
 genfstab -L /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt
