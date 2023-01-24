@@ -3,14 +3,17 @@
 disk="/dev/$1"
 
 echo "---------------Installing base----------------"
-pacstrap /mnt base linux linux-firmware --noconfirm
+pacstrap /mnt --noconfirm base linux linux-firmware --noconfirm
 genfstab -L /mnt >> /mnt/etc/fstab
 
-arch-chroot /mnt
-
 echo "---------------Installing grub----------------"
-pacstrap /mnt grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/mnt/boot --bootloader-id=grub
-sed 's/quiet splash//' /mnt/etc/default/grub
-sed 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /mnt/etc/default/grub
-sed 's/menu/hidden/' /mnt/etc/default/grub
+pacstrap /mnt --noconfirm grub efibootmgr sed
+
+arch-chroot /mnt /bin/bash <<"EOS"
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
+sed -i 's/quiet splash//' /etc/default/grub
+sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+sed -i 's/menu/hidden/' /etc/default/grub
+EOS
+
+echo "Done installing base system"

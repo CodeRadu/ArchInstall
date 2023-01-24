@@ -2,9 +2,11 @@
 
 disk="/dev/$1"
 
+# Need to cleanup because not enough space to install gcc-libs
+
 echo "----------------Cleanup system----------------"
 pacman -Scc --noconfirm
-pacman -R git
+pacman -R --noconfirm git
 
 # Install keyring
 echo "---------Installing required packages---------"
