@@ -1,10 +1,13 @@
 #! /usr/bin/bash
 
-disk="/dev/$1"
-
 echo "---------------Installing base----------------"
-pacstrap /mnt --noconfirm base linux linux-firmware --noconfirm
+pacstrap /mnt --noconfirm base linux linux-firmware networkmanager --noconfirm
 genfstab -L /mnt >> /mnt/etc/fstab
+
+# Enable networkmanager
+arch-chroot /mnt /bin/bash << EOS
+systemctl enable NetworkManager
+EOS
 
 echo "---------------Installing grub----------------"
 pacstrap /mnt --noconfirm grub efibootmgr sed
@@ -17,4 +20,4 @@ sed -i 's/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 EOS
 
-echo "Done installing base system"
+echo "Done installing base system!"
