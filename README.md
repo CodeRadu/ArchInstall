@@ -16,4 +16,4 @@ Then you have 2 options
   - Run `cd archinstall`
   - Run `./archinstall.sh` and follow the instructions
 - Use the nogit version
-  - Run `bash -c "$(curl -sSL https://raw.githubusercontent.com/CodeRadu/ArchInstall/main/archinstall.sh)" -s nogit
+  - Run `bash -c "$(curl -sSL https://raw.githubusercontent.com/CodeRadu/ArchInstall/main/archinstall.sh)" -s nogit`
