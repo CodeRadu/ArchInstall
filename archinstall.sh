@@ -35,13 +35,13 @@ function nogit() {
   DOWNLOAD_URL="https://raw.githubusercontent.com/CodeRadu/ArchInstall/dev/"
   echo "Running without git (using curl)"
   echo "Running setup script"
-  curl "$DOWNLOAD_URL/scripts/0-setup.sh" | bash -s $diskname || quit "setup"
+  bash -c "$(curl -sSL $DOWNLOAD_URL/scripts/0-setup.sh)" -s $diskname || quit "setup"
   echo "Running install script"
-  curl "$DOWNLOAD_URL/scripts/1-install.sh" | bash -s $diskname || quit "install"
+  bash -c "$(curl -sSL $DOWNLOAD_URL/scripts/1-install.sh)" || quit "install"
   echo "Running user script"
-  curl "$DOWNLOAD_URL/scripts/2-user.sh" | bash -s $diskname || quit "user"
+  bash -c "$(curl -sSL $DOWNLOAD_URL/scripts/2-user.sh)" || quit "user"
   echo "Running desktop script"
-  curl "$DOWNLOAD_URL/scripts/3-desktop.sh" | bash -s $diskname || quit "desktop"
+  bash -c "$(curl -sSL $DOWNLOAD_URL/scripts/3-desktop.sh)" || quit "desktop"
 }
 
 if [ "$1" == "nogit" ]; then
