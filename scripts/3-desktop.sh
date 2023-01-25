@@ -3,6 +3,7 @@
 function install_gnome() {
   arch-chroot /mnt /bin/bash << EOS
 pacman -S --noconfirm gnome
+pacman -S --noconfirm chromium
 systemctl enable gdm
 EOS
 }
@@ -10,6 +11,7 @@ EOS
 function install_kde() {
   arch-chroot /mnt /bin/bash << EOS
 pacman -S --noconfirm plasma
+pacman -S --noconfirm chromium kitty packagekit-qt5 flatpak
 systemctl enable sddm
 EOS
 }
