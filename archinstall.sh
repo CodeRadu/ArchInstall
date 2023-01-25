@@ -32,7 +32,7 @@ function normal() {
 }
 
 function nogit() {
-  DOWNLOAD_URL="https://raw.githubusercontent.com/CodeRadu/ArchInstall/main/"
+  DOWNLOAD_URL="https://raw.githubusercontent.com/CodeRadu/ArchInstall/dev/"
   echo "Running without git (using curl)"
   echo "Running setup script"
   curl -fsSL "$DOWNLOAD_URL/scripts/0-setup.sh" | bash -s $diskname || quit "setup"
