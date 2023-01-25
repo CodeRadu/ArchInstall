@@ -2,6 +2,8 @@
 
 disk="/dev/$1"
 
+pacman -Sy
+
 # Need to cleanup because not enough space to install gcc-libs
 
 echo "----------------Cleanup system----------------"
