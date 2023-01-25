@@ -21,7 +21,8 @@ options root="LABEL=arch-root" rw
 EOF
 cat > /mnt/boot/loader/loader.conf << EOF
 default arch.conf
-timeout 3
+timeout 0
+editor no
 EOF
 
 echo "Done installing base system!"
