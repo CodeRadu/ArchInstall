@@ -25,7 +25,7 @@ sgdisk -o $disk || exit 1 # Make gpt structure
 
 # Create the partitions
 sgdisk -n 1::+300M --typecode=1:ef00 --change-name=1:'EFI boot' $disk || exit 1 # partition 1 EFI boot
-sgdisk -n 2::-1024M --typecode=2:8300 --change-name=2:'Root' $disk || exit 1 # partition 2 rootfs
+sgdisk -n 2::-1024M --typecode=2:8300 --change-name=2:'arch-root' $disk || exit 1 # partition 2 rootfs
 sgdisk -n 3::-0 --typecode=3:8200 --change-name=3:'Swap' $disk || exit 1 # partition 3 swap
 
 if [[ "${disk}" =~ "nvme" ]]; then
