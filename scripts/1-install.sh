@@ -13,11 +13,15 @@ echo "-----------Installing systemd-boot------------"
 arch-chroot /mnt /bin/bash << EOS
 bootctl install
 EOS
-echo > /mnt/boot/loader/entries/arch.conf << EOF
+cat > /mnt/boot/loader/entries/arch.conf << EOF
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options root="NAME=arch-root" rw
+EOF
+cat > /mnt/boot/loader/loader.conf << EOF
+default arch.conf
+timeout 3
 EOF
 
 echo "Done installing base system!"
