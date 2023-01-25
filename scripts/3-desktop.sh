@@ -33,7 +33,7 @@ case $de in
     install_kde
     return 0
     ;;
-  [3]*
+  [3]* )
     echo "Not installing desktop environment"
     return 0
     ;;
