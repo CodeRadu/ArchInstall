@@ -26,13 +26,16 @@ case $de in
   [1]* )
     echo "Installing Gnome"
     install_gnome
+    return 0
     ;;
   [2]* )
     echo "Installing Plasma"
     install_kde
+    return 0
     ;;
   [3]*
     echo "Not installing desktop environment"
+    return 0
     ;;
 esac
 
