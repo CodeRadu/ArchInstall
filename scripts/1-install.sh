@@ -17,7 +17,7 @@ cat > /mnt/boot/loader/entries/arch.conf << EOF
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options root="NAME=arch-root" rw
+options root="LABEL=arch-root" rw
 EOF
 cat > /mnt/boot/loader/loader.conf << EOF
 default arch.conf
