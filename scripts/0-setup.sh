@@ -43,6 +43,8 @@ mkfs -t fat -F 32 $boot || exit 1
 mkfs -t ext4 $root || exit 1
 mkswap $swap || exit 1
 
+e2label $root arch-root
+
 echo "----------------Mounting disk-----------------"
 mount $root /mnt || exit 1
 mkdir /mnt/boot || exit 1

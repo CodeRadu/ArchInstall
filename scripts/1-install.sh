@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 
 echo "---------------Installing base----------------"
-pacstrap /mnt --noconfirm base linux linux-firmware networkmanager --noconfirm
+pacstrap /mnt --noconfirm base linux linux-firmware networkmanager
 genfstab -L /mnt >> /mnt/etc/fstab
 
 # Enable networkmanager
@@ -9,15 +9,20 @@ arch-chroot /mnt /bin/bash << EOS
 systemctl enable NetworkManager
 EOS
 
-echo "---------------Installing grub----------------"
-pacstrap /mnt --noconfirm grub efibootmgr sed
-
-arch-chroot /mnt /bin/bash <<"EOS"
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
-sed -i 's/loglevel=3 quiet//' /etc/default/grub
-sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
-sed -i 's/GRUB_TIMEOUT_STYLE=menu/GRUB_TIMEOUT_STYLE=hidden/' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+echo "-----------Installing systemd-boot------------"
+arch-chroot /mnt /bin/bash << EOS
+bootctl install
 EOS
+cat > /mnt/boot/loader/entries/arch.conf << EOF
+title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options root="LABEL=arch-root" rw
+EOF
+cat > /mnt/boot/loader/loader.conf << EOF
+default arch.conf
+timeout 0
+editor no
+EOF
 
 echo "Done installing base system!"
